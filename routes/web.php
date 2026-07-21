@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\ComplaintCategoryController;
+use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('home');
@@ -14,14 +18,19 @@ Route::get('/pelacakan', function () {
     return view('dashboard');
 })->name('tracking');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('categories', ComplaintCategoryController::class)->except('show');
+    Route::resource('complaints', ComplaintController::class);
+    Route::resource('responses', ResponseController::class)->except('show');
+    Route::get('/reports', function () {
+        return view('dashboard');
+    })->name('reports.index');
 });
 
 require __DIR__.'/auth.php';
