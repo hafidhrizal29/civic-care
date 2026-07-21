@@ -1,6 +1,6 @@
 @props(['items' => []])
 
-@if ($items->isNotEmpty())
+@if (count($items) > 0)
     <nav class="flex items-center gap-1.5 text-sm text-ink-subdued mb-6">
         <a href="{{ route('dashboard') }}" class="hover:text-ink transition-colors">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">

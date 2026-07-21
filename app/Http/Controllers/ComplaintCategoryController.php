@@ -8,11 +8,13 @@ use Illuminate\View\View;
 
 class ComplaintCategoryController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
         $categories = ComplaintCategory::withCount('complaints')
+            ->search($request->search)
             ->latest()
-            ->paginate(10);
+            ->paginate(10)
+            ->withQueryString();
 
         return view('categories.index', compact('categories'));
     }
