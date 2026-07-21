@@ -1,11 +1,18 @@
 <?php
 
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingController::class, 'index'])->name('home');
+
+Route::get('/pengaduan/buat', function () {
+    return view('dashboard');
+})->name('complaint.create');
+
+Route::get('/pelacakan', function () {
+    return view('dashboard');
+})->name('tracking');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
