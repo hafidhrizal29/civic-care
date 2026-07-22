@@ -27,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('categories', ComplaintCategoryController::class)->except('show');
     Route::resource('complaints', ComplaintController::class);
+    Route::patch('complaints/{complaint}/status', [ComplaintController::class, 'updateStatus'])->name('complaints.status');
     Route::resource('responses', ResponseController::class)->except('show');
     Route::get('/reports', function () {
         return view('dashboard');

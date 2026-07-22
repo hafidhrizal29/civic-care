@@ -130,4 +130,15 @@ class Complaint extends Model
             default => 'gray',
         };
     }
+
+    public function getStatusBadgeClassAttribute(): string
+    {
+        return match ($this->status) {
+            'baru' => 'bg-blue-50 text-blue-700',
+            'diproses' => 'bg-amber-50 text-amber-700',
+            'selesai' => 'bg-green-50 text-green-700',
+            'ditolak' => 'bg-red-50 text-red-700',
+            default => 'bg-gray-50 text-gray-700',
+        };
+    }
 }
