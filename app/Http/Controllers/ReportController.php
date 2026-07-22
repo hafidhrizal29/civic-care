@@ -30,11 +30,10 @@ class ReportController extends Controller
         $selesai = (clone $query)->where('status', 'selesai')->count();
         $completionRate = $total > 0 ? round(($selesai / $total) * 100, 1) : 0;
 
-        $avgDays = (clone $query)
-            ->where('status', 'selesai')
-            ->selectRaw('AVG(julianday(updated_at) - julianday(created_at)) as avg_days')
-            ->value('avg_days');
-        $avgResolutionDays = $avgDays ? round($avgDays, 1) : null;
+        $completedComplaints = (clone $query)->where('status', 'selesai')->get();
+        $avgResolutionDays = $completedComplaints->isNotEmpty()
+            ? round($completedComplaints->avg(fn ($c) => $c->created_at->diffInHours($c->updated_at)) / 24, 1)
+            : null;
 
         $topCategoryId = (clone $query)
             ->selectRaw('complaint_category_id, COUNT(*) as total')
