@@ -1,4 +1,4 @@
-<section id="beranda" class="relative min-h-[100dvh] flex items-center bg-navy overflow-hidden">
+<section id="beranda" class="hero-fullscreen relative flex items-center bg-navy overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-navy via-navy to-navy-deep"></div>
 
     <div class="absolute top-0 right-0 w-1/2 h-full opacity-[0.03]">
@@ -10,7 +10,7 @@
         </svg>
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-0">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 lg:pt-32 lg:pb-28">
         <div class="max-w-2xl">
             <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full mb-6">
                 <span class="w-1.5 h-1.5 bg-success rounded-full"></span>

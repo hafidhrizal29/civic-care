@@ -26,6 +26,10 @@
 }
 
 @layer base {
+    html, body {
+        height: 100%;
+    }
+
     html {
         scroll-behavior: smooth;
     }
@@ -36,5 +40,12 @@
         background-color: var(--color-canvas);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+@layer utilities {
+    .hero-fullscreen {
+        min-height: 100vh;
+        min-height: 100dvh;
     }
 }
