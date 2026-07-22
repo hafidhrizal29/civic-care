@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingController::class, 'index'])->name('home');
@@ -14,9 +15,7 @@ Route::get('/pengaduan/buat', function () {
     return view('dashboard');
 })->name('complaint.create');
 
-Route::get('/pelacakan', function () {
-    return view('dashboard');
-})->name('tracking');
+Route::get('/pelacakan', [TrackingController::class, 'index'])->name('tracking');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
